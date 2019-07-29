@@ -5,7 +5,10 @@ tmp4:=$(shell mktemp -u)
 tmp5:=$(shell mktemp -u)
 tmp6:=$(shell mktemp -u)
 
-mkdir-configs: ini-dirs.txt
+ini-dirs-.txt: ini-dirs.txt
+	cat $^ | tr ": /" - | tee $@
+
+mkdir-configs: ini-dirs-.txt
 	-cat $< | xargs.exe -i mkdir configs/{}
 	ls configs
 
