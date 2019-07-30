@@ -12,7 +12,7 @@ mkdir-configs: ini-dirs.md5 ini-dirs.txt
 	(while read -u 3 md5; do (mkdir -p configs/$${md5}; read -u 4 path; echo -n $${path} > configs/$${md5}/dir.txt); done)
 	exec 3<&-
 	exec 4<&-
-	find configs -maxdepth 1 -name "????????????????????????????????" -type d -exec $(MAKE) -f ../../Makefile -C {} mobaxterm.ini \;
+	find configs -maxdepth 1 -name "????????????????????????????????" -type d -exec $(MAKE) -f ../../Makefile -C {} mobaxterm.ini bookmark.ini bookmark1.ini bookmark2.ini bookmark3.ini bookmark4.ini bookmark5.ini bookmark6.ini bookmark7.ini bookmark8.ini bookmark9.ini \;
 
 ini-dirs.md5: ini-dirs.txt
 	cat $< | (while read line; do (echo -n "$$line" | md5sum | sed -n -r -e 's/^([0-9a-z]+) .+/\1/p'); done) | tee $@
@@ -40,3 +40,33 @@ mobaxterm.ini: dir.txt
 	exec 3<$<
 	read -u 3 dir
 	cp $${dir}/MobaXterm.ini $@
+
+bookmark.ini: mobaxterm.ini
+	sed -n -r -e '/^\[Bookmarks\]/{pn {:LOOP /^\[/q pnb LOOP }}' <$< >$@
+
+bookmark1.ini: mobaxterm.ini
+	sed -n -r -e '/^\[Bookmarks_1\]/{pn {:LOOP /^\[/q pnb LOOP }}' <$< >$@
+
+bookmark2.ini: mobaxterm.ini
+	sed -n -r -e '/^\[Bookmarks_2\]/{pn {:LOOP /^\[/q pnb LOOP }}' <$< >$@
+
+bookmark3.ini: mobaxterm.ini
+	sed -n -r -e '/^\[Bookmarks_3\]/{pn {:LOOP /^\[/q pnb LOOP }}' <$< >$@
+
+bookmark4.ini: mobaxterm.ini
+	sed -n -r -e '/^\[Bookmarks_4\]/{pn {:LOOP /^\[/q pnb LOOP }}' <$< >$@
+
+bookmark5.ini: mobaxterm.ini
+	sed -n -r -e '/^\[Bookmarks_5\]/{pn {:LOOP /^\[/q pnb LOOP }}' <$< >$@
+
+bookmark6.ini: mobaxterm.ini
+	sed -n -r -e '/^\[Bookmarks_6\]/{pn {:LOOP /^\[/q pnb LOOP }}' <$< >$@
+
+bookmark7.ini: mobaxterm.ini
+	sed -n -r -e '/^\[Bookmarks_7\]/{pn {:LOOP /^\[/q pnb LOOP }}' <$< >$@
+
+bookmark8.ini: mobaxterm.ini
+	sed -n -r -e '/^\[Bookmarks_8\]/{pn {:LOOP /^\[/q pnb LOOP }}' <$< >$@
+
+bookmark9.ini: mobaxterm.ini
+	sed -n -r -e '/^\[Bookmarks_9\]/{pn {:LOOP /^\[/q pnb LOOP }}' <$< >$@
