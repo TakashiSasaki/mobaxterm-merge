@@ -8,3 +8,4 @@ distdir
 ini-dirs.md5
 ini-dirs.md5s
 test/
+.*.swp
